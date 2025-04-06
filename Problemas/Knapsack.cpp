@@ -45,10 +45,10 @@ void Imprime(vi vect) {
     cout << "\n";
 }
 
-void Imprime2d(vector<vi> vect) {
+void Imprime2d(vector<vector<pair<int, bool>>> vect) {
     for (int j = 0; j<vect.size(); j++){
         for (int i = 0; i < vect[j].size(); i++) {
-                cout << vect[j][i] << " ";
+                cout << vect[j][i].first << " " <<vect[j][i].second << "\t\t";
         }
         cout << "\n";
     }
@@ -91,8 +91,54 @@ vi lee(int n) {
     return (vect);
 }
 
-int solve() {
+void create_tabs(int n){
+    while(n--){
+        cout << "\t";
+    }
+}
+
+int columnas;
+
+int dosd2one (int x, int y){
+    return x*columnas+y;
+}
+
+//Completa la tabla de dinammic programming
+int ResuelveDP(vector<int>& solsDP, vector<pii>& objs, int C, int n){
+    for (int i = 1; i<=C; i++){
+        for (int j = 1; j<=n; j++){
+            if (objs[j-1].second<=i){
+                solsDP[dosd2one(i, j)] = max(solsDP[dosd2one(i, j-1)], solsDP[dosd2one(i-objs[j-1].second, j-1)]+objs[j-1].first);
+            } else {
+                solsDP[dosd2one(i, j)] = solsDP[dosd2one(i, j-1)];
+            }
+        }
+    }
+    return 0;
+}
+
+int solve(int C, int n) {
     // Code aquí
+    vector<pii> objs;
+    pii el;
+    for (int i = 0; i<n; i++){
+        cin >> el.first >> el.second;
+        objs.PB(el);
+    }
+    columnas = n+1;
+    vector<int> solsDP ((C+1)*(n+1), 0);
+    ResuelveDP(solsDP, objs, C, n);
+
+    vector<int> solucion;
+    int weight = C;
+    for (int i = n; i>0; i--){
+        if (solsDP[dosd2one(weight, i)] > solsDP[dosd2one(weight, i-1)]){
+            solucion.PB(i-1);
+            weight-=objs[i-1].second;   
+        }
+    }
+    cout << solucion.size() << endl;
+    Imprime(solucion);
     return 0;
 }
 
@@ -100,12 +146,9 @@ int main() {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
     cout.tie(nullptr); 
-    int T;
-    cin >> T; // Número de casos
-    while (T--) {
-        solve();
+    int C, n;
+    while (cin >> C >> n) {
+        solve(C, n);
     }
     return 0;
 }
-
-//Eliminar comentario si el proyecto está terminado (Dinámica empezó el 21/06/2024)
