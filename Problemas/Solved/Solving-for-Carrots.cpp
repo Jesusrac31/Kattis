@@ -93,6 +93,13 @@ vi lee(int n) {
 
 int solve() {
     // Code aquí
+    int n, p;
+    cin >> n >> p;
+    string word;
+    while(n--){
+        getline(cin, word);
+    }
+    cout << p << endl;
     return 0;
 }
 
@@ -100,10 +107,6 @@ int main() {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
     cout.tie(nullptr); 
-    int T;
-    cin >> T; // Número de casos
-    while (T--) {
-        solve();
-    }
+    solve();
     return 0;
 }

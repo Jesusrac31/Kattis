@@ -93,6 +93,36 @@ vi lee(int n) {
 
 int solve() {
     // Code aquí
+    vector<bool> rows (8, true);
+    vector<bool> columns (8, true);
+    vector<bool> pos_d (15, true);
+    vector<bool> neg_d (15, true);
+    string row;
+    int queens = 0;
+    bool possible = true;
+    for (int i = 0; i<8; i++){
+        cin >> row;
+        for (int j = 0; j<row.size(); j++){
+            if (row[j] == '*'){
+                queens++;
+                if (rows[i] && columns[j] && pos_d[i+j] && neg_d[i-j+7]){
+                    rows[i] = false;
+                    columns[j] = false;
+                    pos_d[i+j] = false;
+                    neg_d[i-j+7] = false;
+                } else {
+                    possible = false;
+                }
+            }
+        }
+    }
+
+    if (possible && queens == 8){
+        cout << "valid" << endl;
+    } else {
+        cout << "invalid" << endl;
+    }
+
     return 0;
 }
 
@@ -100,8 +130,7 @@ int main() {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
     cout.tie(nullptr); 
-    int T;
-    cin >> T; // Número de casos
+    int T = 1;
     while (T--) {
         solve();
     }
