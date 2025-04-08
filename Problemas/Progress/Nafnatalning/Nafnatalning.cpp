@@ -93,6 +93,22 @@ vi lee(int n) {
 
 int solve() {
     // Code aquí
+    int n, p;
+    cin >> n >> p;
+    vi names;
+    lli suma = 0;
+    int el;
+    for (int i = 0; i<n; i++){
+        cin >> el;
+        names.PB(el);
+        suma+=el;
+    }
+    lli sol=0;
+    for (int i = 0; i<n; i++){
+        suma-=names[i];
+        sol+=suma*names[i];
+    }
+    cout << ((sol-1)/p)+1 << endl;
     return 0;
 }
 
@@ -100,10 +116,6 @@ int main() {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
     cout.tie(nullptr); 
-    int T;
-    cin >> T; // Número de casos
-    while (T--) {
-        solve();
-    }
+    solve();
     return 0;
 }

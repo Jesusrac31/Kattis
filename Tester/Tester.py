@@ -4,7 +4,11 @@ import shutil
 from colorama import init
 from colorama import Fore
 
-command1 = 'g++ -o main.exe "Problemas/Progress/Gold Leaf/Gold-Leaf.cpp"'
+name_input = "input"
+name_output = "output"
+file_dir = '"Problemas/Progress/Gold Leaf/Gold-Leaf.cpp"'
+
+command1 = 'g++ -o main.exe '+file_dir
 subprocess.run(command1)
 
 init(autoreset=True) 
@@ -12,7 +16,7 @@ init(autoreset=True)
 for i in range(1,73):
     
     # Ruta del archivo de origen
-    archivo_origen = "Tester/Input/goldleaf.in"+str(i)
+    archivo_origen = "Tester/Input/"+name_input+".in"+str(i)
 
     # Ruta del archivo de destino
     archivo_destino = "input.in"
@@ -57,7 +61,7 @@ for i in range(1,73):
             print(f"Error al ejecutar el programa: {e}")
             output_file.write(f"Error: {e}")
 
-    with open("Tester/Output/goldleaf.out"+str(i), "r") as solFile:
+    with open("Tester/Output/"+name_output+".out"+str(i), "r") as solFile:
         sol = solFile.read()
     
     if (sol.strip() == (resultado.stdout).strip()):
