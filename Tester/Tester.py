@@ -6,7 +6,7 @@ from colorama import Fore
 
 name_input = "input"
 name_output = "output"
-file_dir = '"Problemas/Progress/Gold Leaf/Gold-Leaf.cpp"'
+file_dir = '"Problemas/Progress/Hard Drive/Hard-Drive.cpp"'
 
 command1 = 'g++ -o main.exe '+file_dir
 subprocess.run(command1)
