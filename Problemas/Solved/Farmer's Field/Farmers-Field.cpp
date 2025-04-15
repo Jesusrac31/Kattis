@@ -1,5 +1,3 @@
-/*La librería <bits/stdc++.h> no es estándar y solo funciona en los compiladores de GNU como gcc y g++. Es muy común que arroje un error al querer compilar en Xcode, ya que este usa el compilador Clang, al igual que en Visual Studio que usa el compilador MSVC.
-*/
 #include<bits/stdc++.h>
 
 using namespace std;
@@ -95,6 +93,35 @@ vi lee(int n) {
 
 int solve() {
     // Code aquí
+    int n;
+    cin >> n;
+    string field;
+    cin >> field;
+    int r;
+    cin >> r;
+
+    int kill_space = INT_MAX;
+    int act_space = 0;
+    bool weed = false;
+    for (int i = 0; i<n; i++){
+        if (field[i] == 'C'){
+            if (weed){
+                kill_space = min(kill_space, act_space);
+            }
+            act_space = 0;
+            weed = false;
+        } else if (field[i] == 'S'){
+            act_space++;
+        } else {
+            weed = true;
+            act_space++;
+        }
+    }
+    if (2*r+1 <= kill_space){
+        cout << "POSSIBLE" << endl;
+    } else {
+        cout << "IMPOSSIBLE" << endl;
+    }
     return 0;
 }
 
@@ -102,10 +129,6 @@ int main() {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
     cout.tie(nullptr); 
-    int T;
-    cin >> T; // Número de casos
-    while (T--) {
-        solve();
-    }
+    solve();
     return 0;
 }

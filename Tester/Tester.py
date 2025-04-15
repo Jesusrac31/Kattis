@@ -3,17 +3,22 @@ import time
 import shutil
 from colorama import init
 from colorama import Fore
+from os import scandir, getcwd
 
+def ls(ruta = getcwd()):
+    return [arch.name for arch in scandir(ruta) if arch.is_file()]
+
+n = 3
 name_input = "input"
 name_output = "output"
-file_dir = '"Problemas/Progress/Hard Drive/Hard-Drive.cpp"'
+file_dir = '"Problemas\Progress\Ligatures\Ligatures.cpp"'
 
 command1 = 'g++ -o main.exe '+file_dir
 subprocess.run(command1)
 
 init(autoreset=True) 
 
-for i in range(1,73):
+for i in range(1,n+1):
     
     # Ruta del archivo de origen
     archivo_origen = "Tester/Input/"+name_input+".in"+str(i)

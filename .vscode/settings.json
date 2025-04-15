@@ -1,20 +1,18 @@
 {
     "files.associations": {
-        "ostream": "cpp",
         "iostream": "cpp",
-        "chrono": "cpp",
+        "bitset": "cpp",
+        "complex": "cpp",
         "random": "cpp",
-        "limits": "cpp",
-        "valarray": "cpp",
-        "array": "cpp",
+        "ostream": "cpp",
+        "iosfwd": "cpp",
+        "*.tcc": "cpp",
         "deque": "cpp",
-        "forward_list": "cpp",
         "list": "cpp",
         "string": "cpp",
         "unordered_map": "cpp",
         "unordered_set": "cpp",
         "vector": "cpp",
-        "initializer_list": "cpp",
-        "regex": "cpp"
+        "forward_list": "cpp"
     }
 }
